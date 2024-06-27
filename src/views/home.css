@@ -723,7 +723,7 @@
 }
 @media(max-width: 991px) {
   .home-container01 {
-    display: none;
+    display: flex;
   }
   .home-left {
     display: none;
@@ -765,6 +765,9 @@
   }
 }
 @media(max-width: 767px) {
+  .home-container01 {
+    display: flex;
+  }
   .home-burger-menu {
     display: flex;
     align-items: center;
