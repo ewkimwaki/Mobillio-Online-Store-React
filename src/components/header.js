@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
-import PropTypes from 'prop-types'
+import './header.css';
 
-import './header.css'
 
 const Header = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -68,11 +69,9 @@ const Header = (props) => {
             src={props.imageSrc2}
             className="header-image2"
           />
-          <img
-            alt={props.imageAlt3}
-            src={props.imageSrc3}
-            className="header-image3"
-          />
+           <Link to="/auth" className="header-image3" aria-label={props.imageAlt3}>
+    <img src={props.imageSrc3} alt={props.imageAlt3} />
+  </Link> 
         </div>
       </div>
 
@@ -99,18 +98,44 @@ const Header = (props) => {
                                 </button>
                             </div>
 
-                            <nav className="header-middle1"> 
-                                <a href="#" className="header-text06">{props.text6}</a>
-                                <a href="#" className="header-text07">{props.text7}</a>
-                                <a href="#" className="header-text08">{props.text8}</a>
-                                <a href="#" className="header-text09">{props.text9}</a>
-                                <a href="#" className="header-text10">{props.text10}</a>
-                                <a href="#" className="header-text11">{props.text11}</a>
+                            <nav className="header-middle1">
+                                {/* ... (Mobile navigation links as image icons) ... */}
+                                <Link to="/auth" className="header-mobile-link" aria-label={props.imageAlt3}>
+                                   <img src={props.imageSrc3} alt={props.imageAlt3} />
+                                   <span>{props.text12}</span> {/* Added a label for the login link */}
+                                </Link>
+                                 <Link to="/shop" className="header-mobile-link" aria-label={props.text6}>
+                                    <img src={props.imageSrc1} alt={props.imageAlt1} />
+                                    <span>{props.text6}</span>
+                                </Link>
+                                <Link to="/lookbook" className="header-mobile-link" aria-label={props.text7}>
+                                    <img src={props.imageSrc2} alt={props.imageAlt2} />
+                                    <span>{props.text7}</span>
+                                </Link>
+                                <Link to="/special" className="header-mobile-link" aria-label={props.text8}>
+                                    <img src="/images/account-circle.svg" alt="Special" />
+                                    <span>{props.text8}</span>
+                                </Link>
+                                <Link to="/about" className="header-mobile-link" aria-label={props.text9}>
+                                    <img src="/images/info.svg" alt="About" />
+                                    <span>{props.text9}</span>
+                                </Link>
+                                <Link to="/blog" className="header-mobile-link" aria-label={props.text10}>
+                                    <img src="/images/article.svg" alt="Blog" />
+                                    <span>{props.text10}</span>
+                                </Link>
+                                <Link to="/contact" className="header-mobile-link" aria-label={props.text11}>
+                                    <img src="/images/mail.svg" alt="Contact" />
+                                    <span>{props.text11}</span>
+                                </Link>
+                                
                             </nav>
                         </div>
                     </div>
                 )}
             </div>
+            {/* Auth Modal */}
+            
         </header>
     );
 };
@@ -142,6 +167,7 @@ Header.defaultProps = {
   text9: 'ABOUT',
   text10: 'BLOG',
   text11: 'CONTACT',
+  text12: 'LOG IN',
 }
 
 Header.propTypes = {
@@ -167,6 +193,7 @@ Header.propTypes = {
   text9: PropTypes.string,
   text10: PropTypes.string,
   text11: PropTypes.string,
+  text12: PropTypes.string, 
 }
 
 export default Header

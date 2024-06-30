@@ -28,7 +28,7 @@
   width: 100%;
   flex-grow: 1;
   max-width: var(--dl-size-size-xxlarge);
-  transition: 0.3s;
+  transition: 1s;
   border-color: var(--dl-color-gray-700);
   border-width: 1px;
   padding-left: var(--dl-space-space-threeunits);
@@ -44,7 +44,6 @@
   position: relative;
   box-sizing: border-box;
   align-items: center;
-  flex-shrink: 1;
   border-color: transparent;
   justify-content: center;
 }
@@ -104,12 +103,17 @@
   height: 100vh;
   padding: 32px;
   z-index: 100;
-  position: absolute;
-  transform: translateX(100%);
-  transition: 0.3s;
+  position: fixed; 
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
+  transform: translateX(-100%); 
+  transition: transform 0.3s ease-in-out;
+  transform: translate3d(0, 0, 0);
+}
+.header-mobile-menu.open { /* Style for when the menu is open */
+  transform: translateX(0%);  /* Slide in */
+  transform: translate3d(0, 0, 0);
 }
 .header-nav {
   display: flex;
@@ -127,6 +131,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease-in-out;
 }
 .header-icon02 {
   width: var(--dl-size-size-xsmall);
@@ -212,9 +217,14 @@
   width: var(--dl-size-size-xsmall);
   height: var(--dl-size-size-xsmall);
 }
+.header-mobile-link {
+  display: flex; /* or inline-flex */ 
+  align-items: center; /* Vertically align icon and text */
+  gap: 0.5rem;      /* Add some spacing between icon and text */
+}
 @media(max-width: 991px) {
   .header-container {
-    display: flex;
+    display: block;
   }
   .header-left {
     display: none;
@@ -246,15 +256,15 @@
   .header-mobile-menu {
     display: flex;
     flex-direction: column;
-    position: fixed; /* Ensure it covers the whole viewport */
+    position: absolute; /* Ensure it covers the whole viewport */
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background-color: #fff;
     padding: 1rem;
-    transform: translateX(0); /* Show the mobile menu */
-    transition: transform 0.3s ease-in-out;
+    transform: translateX(0%); /* Show the mobile menu */
+    transition: transform 1s ease-in-out;
   }
   .header-close-mobile-menu {
     position: absolute; 
@@ -263,7 +273,7 @@
     cursor: pointer;
   }
 
-  .header-middle1 {
+  .header-middle-mobile {
     flex-direction: column; 
     align-items: center;
     margin-top: 2rem; /* Add top margin for spacing */
